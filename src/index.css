@@ -126,6 +126,10 @@ ul {
   padding: 0;
 }
 
+.error {
+  color: var(--red-dark);
+}
+
 .img {
   width: 100%;
   display: block;
