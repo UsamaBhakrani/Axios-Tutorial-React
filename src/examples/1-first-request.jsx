@@ -3,7 +3,7 @@ import axios from "axios";
 
 const url = "https://course-api.com/react-store-products";
 
-const App = () => {
+const FirstRequest = () => {
   const [error, setError] = useState("");
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -33,26 +33,28 @@ const App = () => {
       {loading && <h2 className="text-center">Loading...</h2>}
       {error && <h3 className="text-center error">{error}</h3>}
       <h2>Working with Apis</h2>
-      {data.map(
-        ({
-          category,
-          colors,
-          company,
-          description,
-          id,
-          image,
-          name,
-          price,
-          shipping,
-        }) => {
-          return (
-            <article>
-              {name} ${price}
-            </article>
-          );
-        }
-      )}
+      <ul>
+        {data.map(
+          ({
+            category,
+            colors,
+            company,
+            description,
+            id,
+            image,
+            name,
+            price,
+            shipping,
+          }) => {
+            return (
+              <li>
+                {name} ${price}
+              </li>
+            );
+          }
+        )}
+      </ul>
     </>
   );
 };
-export default App;
+export default FirstRequest;
