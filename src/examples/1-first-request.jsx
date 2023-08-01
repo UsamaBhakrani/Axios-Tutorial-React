@@ -11,17 +11,15 @@ const FirstRequest = () => {
   const getData = async () => {
     setLoading(true);
 
-    const response = await axios
-      .get(url)
-      .then((res) => {
-        setData(res.data);
-        setLoading(false);
-      })
-
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
+    try {
+      const { data } = await axios(url);
+      setData(data);
+      setLoading(false);
+    } catch (err) {
+      setError(err.message);
+      setData([])
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -31,8 +29,7 @@ const FirstRequest = () => {
   return (
     <>
       {loading && <h2 className="text-center">Loading...</h2>}
-      {error && <h3 className="text-center error">{error}</h3>}
-      <h2>Working with Apis</h2>
+      {data && <h5 className="text-center error">{error}</h5>}
       <ul>
         {data.map(
           ({
@@ -47,7 +44,7 @@ const FirstRequest = () => {
             shipping,
           }) => {
             return (
-              <li>
+              <li key={id}>
                 {name} ${price}
               </li>
             );
