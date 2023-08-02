@@ -10,7 +10,7 @@ const PostRequest = () => {
     e.preventDefault();
 
     try {
-      const response = axios.post(url, { name, email });
+      const response = await axios.post(url, { name, email });
       console.log(response);
     } catch (error) {
       console.log(error);
